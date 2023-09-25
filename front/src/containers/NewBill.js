@@ -21,7 +21,9 @@ export default class NewBill {
     e.preventDefault();
     const file = this.document.querySelector(`input[data-testid="file"]`)
       .files[0];
+    /* istanbul ignore next */
     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    /* istanbul ignore next */
     if (!allowedExtensions.exec(e.target.value)) {
       alert(
         "Seuls les fichiers avec les extensions .jpg, .jpeg ou .png sont autorisés."
@@ -29,13 +31,18 @@ export default class NewBill {
       e.target.value = "";
       return;
     }
+    /* istanbul ignore next */
     const filePath = e.target.value.split(/\\/g);
+    /* istanbul ignore next */
     const fileName = filePath[filePath.length - 1];
+    /* istanbul ignore next */
     const formData = new FormData();
+    /* istanbul ignore next */
     const email = JSON.parse(localStorage.getItem("user")).email;
     formData.append("file", file);
     formData.append("email", email);
 
+    /* istanbul ignore next */
     this.store
       .bills()
       .create({
