@@ -53,7 +53,7 @@ describe("Given I am connected as an employee", () => {
         const onNavigate = (pathname) => {
           document.body.innerHTML = ROUTES({ pathname });
         };
-
+  
         Object.defineProperty(window, "localStorage", {
           value: localStorageMock,
         });
@@ -63,23 +63,23 @@ describe("Given I am connected as an employee", () => {
             type: "Employee",
           })
         );
-
+  
         const myBills = new Bills({
           document,
           onNavigate,
           store: null,
           localStorage: window.localStorage,
         });
-
+  
         document.body.innerHTML = BillsUI({ data: bills });
-
+  
         const handleClickNewBill = jest.fn(() => myBills.handleClickNewBill());
         const btnNewBill = screen.getByTestId("btn-new-bill");
         btnNewBill.addEventListener("click", handleClickNewBill);
         btnNewBill.click(btnNewBill);
-
+  
         expect(handleClickNewBill).toHaveBeenCalled();
-
+  
         await waitFor(() => screen.getByTestId("form-new-bill"));
         expect(screen.getByTestId("form-new-bill")).toBeTruthy();
       });
