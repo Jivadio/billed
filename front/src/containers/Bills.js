@@ -36,7 +36,6 @@ export default class {
   };
 
   getBills = () => {
-    /* istanbul ignore next */
     if (this.store) {
       return this.store
         .bills()
